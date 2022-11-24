@@ -1,0 +1,19 @@
+.bgImage {
+    background-image: url("../../assets/backgroundImage.jpg");
+    background-size: cover;
+    min-height: 100vh;
+  
+  }
+  
+  .cardSignIn{
+      width: 30rem;
+      height: 30rem;
+  }
+
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  .errorStyle{
+    color: red;
+  }

@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="button"
+            class="btn"
+            style="background-color: rgb(227, 162, 223); color: white"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Nouveau utilisateur
+          </button>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="list-group list-group-flush">
+            <app-user-item
+              *ngFor="let userElm of users"
+              [user]="userElm"
+              (userSelected)="onUserSelected(userElm)"
+            >
+            </app-user-item>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel " style="color:#886185">
+          AJOUTER UN NOUVEAU UTILISATEUR
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-alert
+          *ngIf="isSuccess"
+          [message]="success"
+          [title]="'Succès!'"
+        ></app-alert>
+        <app-alert
+          *ngIf="isFailed"
+          [message]="error"
+          [title]="'Désolé!'"
+        ></app-alert>
+
+        <form #userForm="ngForm">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nom * </label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastname"
+              name="lastname"
+              required
+              ngModel
+              #lastname="ngModel"
+            />
+            <span
+              class="help-block errorStyle mt-4"
+              *ngIf="lastname.errors?.['required'] && lastname.touched"
+            >
+              Ce champs est obligatoire</span
+            >
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Prénom * </label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              name="firstname"
+              required
+              ngModel
+              #firstname="ngModel"
+            />
+            <span
+              class="help-block errorStyle mt-4"
+              *ngIf="firstname.errors?.['required'] && firstname.touched"
+            >
+              Ce champs est obligatoire</span
+            >
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >Travail *
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="job"
+              name="job"
+              required
+              ngModel
+              #job="ngModel"
+            />
+            <span
+              class="help-block errorStyle mt-4"
+              *ngIf="job.errors?.['required'] && job.touched"
+            >
+              Ce champs est obligatoire</span
+            >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          #myModalClose
+          data-bs-dismiss="modal"
+          (click)="cancel()"
+        >
+          Annuler
+        </button>
+        <button
+          type="button"
+          class="btn"
+          type="submit"
+          [disabled]="!userForm.valid"
+          (click)="onSubmit()"
+          style="color: white; background-color: rgb(227, 162, 223)"
+        >
+          Ajouter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

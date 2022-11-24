@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <div class="d-flex flex-row bd-highlight">
+            <div class="bd-highlight pt-1">
+              <i class="bi bi-people fa-lg"></i>
+            </div>
+            <div class="bd-highlight">
+              <h6>
+                <a class="nav-link" href="/user-management"
+                  >Gestion des utilisateurs</a
+                >
+              </h6>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav pe-5">
+        <li>
+          <div class="d-flex flex-row bd-highlight">
+            <div class="bd-highlight pt-1">
+              <i class="bi bi-power fa-lg"></i>
+            </div>
+            <div class="bd-highlight">
+              <h6>
+                <a class="nav-link" href="/signin" (click)="logout()"
+                  >Se déconnecter</a
+                >
+              </h6>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
