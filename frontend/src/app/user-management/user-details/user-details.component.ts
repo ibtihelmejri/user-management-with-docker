@@ -10,9 +10,10 @@ import * as fromApp from "../../store/app.reducer";
   styleUrls: ["./user-details.component.css"],
 })
 export class UserDetailsComponent implements OnInit {
-  id!: number;
+  id!: string;
   userSelected: UserModel[] = [];
   user!: UserModel;
+  myImgUrl: string = "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?b=1&s=170667a&w=0&k=20&c=-qQGlKM8OQsSJCEkHnqS9FI94VRTkZ-7tg0K0u02XL0="
 
   constructor(
     private activeroute: ActivatedRoute,

@@ -21,7 +21,6 @@ export function userReducer(
 ): userState {
   switch (action.type) {
     case UserActions.ACTION_SUCCESS:
-      console.log('action.payload',action.payload);
       
       return {
         ...state,
@@ -31,8 +30,9 @@ export function userReducer(
       return {
         ...state,
         messageError: null,
-        messageSuccess: action.payload,
-        loading:false
+        messageSuccess: "L'ajout a été effectuée avec succès",
+        loading:false,
+        users:[action.payload, ...state.users]
 
       };
 

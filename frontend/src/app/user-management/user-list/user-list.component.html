@@ -104,6 +104,26 @@
               Ce champs est obligatoire</span
             >
           </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Email * </label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              required
+              ngModel
+              #email="ngModel"
+            />
+            <span
+              class="help-block errorStyle mt-4"
+              *ngIf="email.errors?.['required'] && email.touched"
+            >
+              Ce champs est obligatoire</span
+            >
+          </div>
+
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"
               >Travail *

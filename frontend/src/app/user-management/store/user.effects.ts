@@ -12,19 +12,20 @@ export interface UserResponseData {
   // total: number;
   // total_page: number;
   // data: UserModel[];
- avatar : string;
- email : string;
- firstname : string;
- id : number;
- lastname : string;
+  avatar: string;
+  email: string;
+  firstname: string;
+  id: string;
+  lastname: string;
+  job: string;
 }
 
-export interface AddUserResponseData {
-  name: string;
-  job: string;
-  id: string;
-  createdAt: string;
-}
+// export interface AddUserResponseData {
+//   name: string;
+//   job: string;
+//   id: string;
+//   createdAt: string;
+// }
 
 @Injectable()
 export class UserEffects {
@@ -34,10 +35,12 @@ export class UserEffects {
       mergeMap(() =>
         this.http
           // .get<UserResponseData>("https://reqres.in/api/users?page=1")
-          .get<UserResponseData []>("http://localhost:3000/api/users")
+          .get<UserResponseData[]>("http://localhost:3000/api/users")
 
           .pipe(
-            map((data) =>  { return new UserActions.ActionSuccess(data)}),
+            map((data) => {
+              return new UserActions.ActionSuccess(data);
+            }),
             catchError((err) => of(new UserActions.ActionFail("error")))
           )
       )
@@ -49,14 +52,23 @@ export class UserEffects {
       ofType(UserActions.ADD_USER),
       switchMap((userData: UserActions.AddUser) => {
         return this.http
-          .post<AddUserResponseData>("http://localhost:3000/api/users", {
-            name: userData.payload.name,
+          .post<UserResponseData>("http://localhost:3000/api/users", {
+            // name: userData.payload.name,
+            // job: userData.payload.job,
+            avatar: userData.payload.avatar,
+            email: userData.payload.email,
+            firstname: userData.payload.firstname,
+            lastname: userData.payload.lastname,
             job: userData.payload.job,
           })
           .pipe(
             map(
-              () => new UserActions.IsSuccess("L'ajout a été effectuée avec succès")
-              ),
+              (resData) =>
+                // new UserActions.IsSuccess("L'ajout a été effectuée avec succès")
+                new UserActions.IsSuccess(resData)
+
+            ),
+
             catchError((err) => of(new UserActions.ActionFail("error")))
           );
       })
