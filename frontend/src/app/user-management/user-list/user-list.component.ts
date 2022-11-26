@@ -55,9 +55,10 @@ export class UserListComponent implements OnInit {
     const firstname = this.userForm?.form.value.firstname;
     const lastname = this.userForm?.form.value.lastname;
     const job = this.userForm?.form.value.job;
+    const email = this.userForm?.form.value.email;
 
     this.store.dispatch(
-      new UserActions.AddUser({ name: firstname + "" + lastname, job: job })
+      new UserActions.AddUser({ avatar: "", email: email, firstname: firstname, lastname: lastname, job: job })
     );
   }
 

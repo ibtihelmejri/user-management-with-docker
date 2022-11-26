@@ -12,14 +12,22 @@ const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
-const orm_config_1 = require("./orm.config");
 const registrations_module_1 = require("./registrations/registrations.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot(orm_config_1.config),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: 'postgres',
+                port: 5432,
+                username: 'user',
+                password: 'password',
+                database: 'db',
+                autoLoadEntities: true,
+                synchronize: true
+            }),
             users_module_1.UsersModule, registrations_module_1.RegistrationsModule
         ],
         controllers: [app_controller_1.AppController],

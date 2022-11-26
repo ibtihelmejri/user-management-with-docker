@@ -26,9 +26,7 @@ export class AuthEffects {
             password: authData.payload.password,
           })
           .pipe(
-            map((resData) => {
-              console.log('resData',resData.accessToken);
-              
+            map((resData) => {              
               localStorage.setItem("OOPgtd563", resData.accessToken);
               return new AuthActions.OnLogin({
                 token: resData.accessToken,
